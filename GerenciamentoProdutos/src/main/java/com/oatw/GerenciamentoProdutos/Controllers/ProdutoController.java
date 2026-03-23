@@ -18,7 +18,7 @@ public class ProdutoController {
     ProdutoService produtoService;
 
     @PostMapping
-    public ResponseEntity<ProdutoModel> createProduto(ProdutoModel produtoModel){
+    public ResponseEntity<ProdutoModel> createProduto(@RequestBody ProdutoModel produtoModel){
         ProdutoModel request = produtoService.createProduto(produtoModel);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produtoModel.getId()).toUri();
         return ResponseEntity.created(uri).body(request);
